@@ -5,27 +5,29 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class HelloJunit_Test {
+/** @Before, @After, @Test, @Test(expected=Exception.class) */
+public class HelloJunit_Test {
+
     private HelloJunit helloJunit = null;
 
     @BeforeEach
-    void setUp() {
+    public void before() {
         this.helloJunit = new HelloJunit();
     }
 
     @AfterEach
-    void tearDown() {
+    public void after() {
         this.helloJunit = null;
     }
 
     @Test
-    void greeting_return_greeting_with_name() {
-        String name = "Junit5";
+    public void greeting_return_greeting_with_name() {
+        String name = "Junit4";
         Assertions.assertEquals(String.format("Hello %s", name), helloJunit.greeting(name));
     }
 
     @Test
-    void greeting_throws_exception_for_null_name() {
+    public void greeting_throws_exception_for_null_name() {
         Assertions.assertThrows(
                 IllegalArgumentException.class,
                 () -> {
@@ -34,7 +36,7 @@ class HelloJunit_Test {
     }
 
     @Test
-    void greeting_throws_exception_for_empty_name() {
+    public void greeting_throws_exception_for_empty_name() {
         Assertions.assertThrows(
                 IllegalArgumentException.class,
                 () -> {
@@ -43,7 +45,7 @@ class HelloJunit_Test {
     }
 
     @Test
-    void greeting_throws_exception_for_space_name() {
+    public void greeting_throws_exception_for_space_name() {
         Assertions.assertThrows(
                 IllegalArgumentException.class,
                 () -> {
@@ -52,7 +54,7 @@ class HelloJunit_Test {
     }
 
     @Test
-    void greeting_throws_exception_for_tab_name() {
+    public void greeting_throws_exception_for_tab_name() {
         Assertions.assertThrows(
                 IllegalArgumentException.class,
                 () -> {
